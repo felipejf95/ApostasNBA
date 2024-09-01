@@ -1,9 +1,13 @@
 package br.ufjf.scabapi.service;
 
+import br.ufjf.scabapi.exception.RegraNegocioException;
+import br.ufjf.scabapi.model.entity.Equipe;
 import br.ufjf.scabapi.model.entity.Jogador;
 import br.ufjf.scabapi.model.repository.JogadorRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class JogadorService {
@@ -20,5 +24,23 @@ public class JogadorService {
 
     public Optional<Jogador> getJogadorById (Long id){
         return repository.findById(id);
+    }
+
+    @Transactional
+    public Jogador salvar(Jogador jogador){
+        validar(jogador);
+        return repository.save(jogador);
+    }
+
+    @Transactional
+    public void excluir(Jogador jogador){
+        Objects.requireNonNull(jogador.getId());
+        repository.delete(jogador);
+    }
+
+    public void validar(Jogador jogador){
+        if (jogador.getNome() == null){
+            throw new RegraNegocioException("O jogador deve ter um nome");
+        }
     }
 }

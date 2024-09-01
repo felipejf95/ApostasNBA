@@ -1,8 +1,8 @@
 package br.ufjf.scabapi.service;
 
 import br.ufjf.scabapi.exception.RegraNegocioException;
-import br.ufjf.scabapi.model.entity.Aposta;
-import br.ufjf.scabapi.model.repository.ApostaRepository;
+import br.ufjf.scabapi.model.entity.ApostaJogo;
+import br.ufjf.scabapi.model.repository.ApostaJogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,40 +12,39 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class ApostaService {
+public class ApostaJogoService {
 
     @Autowired
-    private ApostaRepository repository;
+    private ApostaJogoRepository repository;
 
-    public ApostaService(ApostaRepository repository){
+    public ApostaJogoService(ApostaJogoRepository repository) {
         this.repository = repository;
     }
 
-    public List<Aposta> getApostas(){
+    public List<ApostaJogo> getApostas() {
         return repository.findAll();
     }
 
-    public Optional<Aposta> getApostaById(Long id){
+    public Optional<ApostaJogo> getApostaById(Long id) {
         return repository.findById(id);
     }
 
     @Transactional
-    public Aposta salvar(Aposta aposta){
+    public ApostaJogo salvar(ApostaJogo aposta) {
         validar(aposta);
         return repository.save(aposta);
     }
 
     @Transactional
-    public void excluir(Aposta aposta) {
+    public void excluir(ApostaJogo aposta) {
         Objects.requireNonNull(aposta.getId());
         repository.delete(aposta);
     }
 
 
-    public void validar(Aposta aposta) {
-        if (aposta.getValor() == 0 || aposta.getOdd() == 0 ){
+    public void validar(ApostaJogo aposta) {
+        if (aposta.getValor() == 0 || aposta.getOdd() == 0) {
             throw new RegraNegocioException("O valor da aposta nao pode ser 0");
         }
     }
-
 }

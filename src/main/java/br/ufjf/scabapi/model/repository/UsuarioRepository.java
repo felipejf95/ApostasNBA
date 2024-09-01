@@ -1,7 +1,9 @@
 package br.ufjf.scabapi.model.repository;
 
-import br.ufjf.scabapi.model.entity.Usuario;
+import br.ufjf.scabapi.model.entity.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+@Repository
+public interface UsuarioRepository extends JpaRepository<Pessoa, Long> {
 }

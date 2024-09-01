@@ -1,6 +1,6 @@
 package br.ufjf.scabapi.service;
 
-import br.ufjf.scabapi.model.entity.Usuario;
+import br.ufjf.scabapi.model.entity.Pessoa;
 import br.ufjf.scabapi.model.repository.UsuarioRepository;
 
 import java.util.List;
@@ -14,11 +14,11 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public List<Usuario> getUsuarios(){
+    public List<Pessoa> getUsuarios(){
         return  repository.findAll();
     }
 
-    public Optional<Usuario> getUsuarioById(Long id){
+    public Optional<Pessoa> getUsuarioById(Long id){
         return  repository.findById(id);
     }
 }

@@ -1,24 +1,26 @@
 package br.ufjf.scabapi.model.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import javax.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
-@Entity
+@MappedSuperclass
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+public abstract class Pessoa {
 
-
-public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+    private String cpf;
     private String email;
+
+    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Aposta> apostas;
 }
