@@ -21,8 +21,8 @@ public abstract class Aposta {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+    @JoinColumn(name = "jogador_id")
+    private Jogador jogador;
 
     public abstract void validar();
 
