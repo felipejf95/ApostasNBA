@@ -10,7 +10,7 @@ import org.modelmapper.ModelMapper;
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class ApostaEquipeDTO {
+public class ApostaEquipeDTO extends ApostaDTO{
 
     private Long id;
     private double odd;

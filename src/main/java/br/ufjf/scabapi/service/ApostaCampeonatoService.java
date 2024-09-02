@@ -47,4 +47,13 @@ public class ApostaCampeonatoService {
             throw new RegraNegocioException("O valor da aposta nao pode ser 0");
         }
     }
+
+
+    public List<ApostaCampeonato> getApostasCampeonatoByJogadorId(Long jogadorId) {
+        return repository.findByJogadorId(jogadorId);
+    }
+
+    public List<ApostaCampeonato> getApostaPorJogador(Long jogadorId) {
+        return repository.findByJogadorId(jogadorId);
+    }
 }

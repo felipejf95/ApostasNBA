@@ -1,6 +1,7 @@
 package br.ufjf.scabapi.service;
 
 import br.ufjf.scabapi.exception.RegraNegocioException;
+import br.ufjf.scabapi.model.entity.ApostaEquipe;
 import br.ufjf.scabapi.model.entity.ApostaJogo;
 import br.ufjf.scabapi.model.repository.ApostaJogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,13 @@ public class ApostaJogoService {
             throw new RegraNegocioException("O valor da aposta nao pode ser 0");
         }
     }
+
+    public List<ApostaJogo> getApostasJogoByJogadorId(Long jogadorId) {
+        return repository.findByJogadorId(jogadorId);
+    }
+
+    public List<ApostaJogo> getApostaPorJogador(Long jogadorId) {
+        return repository.findByJogadorId(jogadorId);
+    }
+
 }

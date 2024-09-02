@@ -22,8 +22,8 @@ public class ApostaJogo extends Aposta {
     }
 
     @Override
-    public Double calcularRetorno() {
+    public Double calcularRetorno(Double valor) {
         // Implementação do cálculo do retorno da aposta
-        return this.getValor() * this.getOdd();// Exemplo simplificado
+        return valor * this.getOdd(); // Exemplo simplificado
     }
 }

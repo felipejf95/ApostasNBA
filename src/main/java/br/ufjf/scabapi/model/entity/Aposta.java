@@ -26,5 +26,7 @@ public abstract class Aposta {
 
     public abstract void validar();
 
-    public abstract Double calcularRetorno();
+    public abstract Double calcularRetorno(Double valor);
+
+
 }
