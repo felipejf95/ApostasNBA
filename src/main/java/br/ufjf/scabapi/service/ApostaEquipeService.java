@@ -23,11 +23,11 @@ public class ApostaEquipeService {
         this.repository = repository;
     }
 
-    public List<ApostaEquipe> getApostas() {
+    public List<ApostaEquipe> getApostasEquipe() {
         return repository.findAll();
     }
 
-    public Optional<ApostaEquipe> getApostaById(Long id) {
+    public Optional<ApostaEquipe> getApostaEquipeById(Long id) {
         return repository.findById(id);
     }
 

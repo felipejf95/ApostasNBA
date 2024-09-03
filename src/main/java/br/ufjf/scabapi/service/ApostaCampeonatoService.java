@@ -21,11 +21,11 @@ public class ApostaCampeonatoService {
         this.repository = repository;
     }
 
-    public List<ApostaCampeonato> getApostas() {
+    public List<ApostaCampeonato> getApostasCampeonato() {
         return repository.findAll();
     }
 
-    public Optional<ApostaCampeonato> getApostaById(Long id) {
+    public Optional<ApostaCampeonato> getApostaCampeonatoById(Long id) {
         return repository.findById(id);
     }
 

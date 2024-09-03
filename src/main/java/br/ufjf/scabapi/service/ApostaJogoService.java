@@ -22,11 +22,11 @@ public class ApostaJogoService {
         this.repository = repository;
     }
 
-    public List<ApostaJogo> getApostas() {
+    public List<ApostaJogo> getApostasJogo() {
         return repository.findAll();
     }
 
-    public Optional<ApostaJogo> getApostaById(Long id) {
+    public Optional<ApostaJogo> getApostaJogoById(Long id) {
         return repository.findById(id);
     }
 
