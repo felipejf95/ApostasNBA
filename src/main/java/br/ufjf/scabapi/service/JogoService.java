@@ -1,15 +1,16 @@
 package br.ufjf.scabapi.service;
 
 import br.ufjf.scabapi.exception.RegraNegocioException;
-import br.ufjf.scabapi.model.entity.Jogador;
 import br.ufjf.scabapi.model.entity.Jogo;
 import br.ufjf.scabapi.model.repository.JogoRepository;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Service
 public class JogoService {
 
     private JogoRepository repository;

@@ -17,4 +17,8 @@ public class Jogador extends Pessoa{
     private Long id;
     private String nome;
 
+    @OneToMany(mappedBy = "jogador")
+    private List<Aposta> apostas;
+
+
 }

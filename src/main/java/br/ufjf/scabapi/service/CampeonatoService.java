@@ -3,12 +3,14 @@ package br.ufjf.scabapi.service;
 import br.ufjf.scabapi.exception.RegraNegocioException;
 import br.ufjf.scabapi.model.entity.Campeonato;
 import br.ufjf.scabapi.model.repository.CampeonatoRepository;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+@Service
 public class CampeonatoService {
 
     private CampeonatoRepository repository;

@@ -21,6 +21,4 @@ public abstract class Pessoa {
     private String cpf;
     private String email;
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Aposta> apostas;
 }
