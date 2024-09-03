@@ -16,9 +16,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/api/v1/jogadores")
 @RequiredArgsConstructor
-@Api("API de Clientes")
+@Api("API de Jogadores")
 public class JogadorController {
 
     private final JogadorService service;
@@ -32,8 +32,8 @@ public class JogadorController {
             @ApiResponse(code = 500, message = "Erro interno do servidor")
     })
     public ResponseEntity get() {
-        List<Jogador> clientes = service.getJogadores();
-        return ResponseEntity.ok(clientes.stream().map(JogadorDTO::create).collect(Collectors.toList()));
+        List<Jogador> jogadores = service.getJogadores();
+        return ResponseEntity.ok(jogadores.stream().map(JogadorDTO::create).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")
@@ -44,11 +44,11 @@ public class JogadorController {
             @ApiResponse(code = 500, message = "Erro interno do servidor")
     })
     public ResponseEntity get(@PathVariable("id") Long id) {
-        Optional<Jogador> cliente = service.getJogadorById(id);
-        if (!cliente.isPresent()) {
-            return new ResponseEntity("Cliente não encontrado", HttpStatus.NOT_FOUND);
+        Optional<Jogador> jogadores = service.getJogadorById(id);
+        if (!jogadores.isPresent()) {
+            return new ResponseEntity("Jogador não encontrado", HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(cliente.map(JogadorDTO::create));
+        return ResponseEntity.ok(jogadores.map(JogadorDTO::create));
     }
 
     @PostMapping()
