@@ -1,6 +1,7 @@
 package br.ufjf.scabapi.api.controller;
 
 import br.ufjf.scabapi.api.dto.UsuarioDTO;
+import br.ufjf.scabapi.exception.SenhaInvalidaException;
 import br.ufjf.scabapi.model.entity.Usuario;
 import br.ufjf.scabapi.service.UsuarioService;
 import br.ufjf.scabapi.exception.RegraNegocioException;
@@ -11,6 +12,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import  br.ufjf.scabapi.security.JwtService;
+import br.ufjf.scabapi.api.dto.CredenciaisDTO;
+import br.ufjf.scabapi.api.dto.TokenDTO;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +36,8 @@ public class UsuarioController {
     private final UsuarioService service;
     private final ModelMapper modelMapper = new ModelMapper();
     private final PasswordEncoder passwordEncoder;
+    private final UsuarioService usuarioService;
+    private final JwtService jwtService;
 
 
     @GetMapping()
@@ -77,6 +90,21 @@ public class UsuarioController {
             return new ResponseEntity(usuario, HttpStatus.CREATED);
         } catch (RegraNegocioException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+
+    @PostMapping("/auth")
+    public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
+        try{
+            Usuario usuario = Usuario.builder()
+                    .login(credenciais.getLogin())
+                    .senha(credenciais.getSenha()).build();
+            UserDetails usuarioAutenticado = usuarioService.autenticar(usuario);
+            String token = jwtService.gerarToken(usuario);
+            return new TokenDTO(usuario.getLogin(), token);
+        } catch (UsernameNotFoundException | SenhaInvalidaException e ){
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
         }
     }
 

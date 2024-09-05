@@ -27,7 +27,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/contas")
+@RequestMapping("/api/v1/apostas")
 @RequiredArgsConstructor
 @Api("API de Apostas")
 public class ApostaController {
