@@ -15,11 +15,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class JogadorService {
 
-    private JogadorRepository repository;
+    private final JogadorRepository repository;
 
-    public JogadorService(JogadorRepository repository){
-        this.repository = repository;
-    }
 
     public List<Jogador> getJogadores(){
         return repository.findAll();

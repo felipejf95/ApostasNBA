@@ -43,12 +43,12 @@ public class JogadorController {
             @ApiResponse(code = 404, message = "Jogador não encontrado"),
             @ApiResponse(code = 500, message = "Erro interno do servidor")
     })
-    public ResponseEntity get(@PathVariable("id") Long id) {
-        Optional<Jogador> jogadores = service.getJogadorById(id);
-        if (!jogadores.isPresent()) {
-            return new ResponseEntity("Jogador não encontrado", HttpStatus.NOT_FOUND);
+    public ResponseEntity<?> get(@PathVariable("id") Long id) {
+        Optional<Jogador> jogador = service.getJogadorById(id);
+        if (!jogador.isPresent()) {
+            return new ResponseEntity<>("Jogador não encontrado", HttpStatus.NOT_FOUND);
         }
-        return ResponseEntity.ok(jogadores.map(JogadorDTO::create));
+        return ResponseEntity.ok(JogadorDTO.create(jogador.get()));
     }
 
     @PostMapping()
